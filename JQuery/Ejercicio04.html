@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+    <style>
+        .resaltado {
+            background-color: #001aff;
+            font-size: 200%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainbox">
+        <input class="inputB" type="button" value="Cambia color" onclick="color()" />
+        <input class="inputB" type="button" value="Agrega clase" onclick="clase()" />
+        <h1 class="text">Esto es la cabecera 1</h1>
+        <p class="text">Esto es el parrafo 1</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <!-- Lo cargo desde el cdn de google >...< -->
+
+    <script>
+        onReady();  // Para que todo termine de generarse la web.
+        function onReady() {
+            $(document).ready();
+        }
+
+        function color() {  // Cambio las propiedades CSS del atributo
+            $('h1').css({
+                'background-color': '#ff3316',
+                'font-size': '200px'
+            }
+            );
+        }
+
+        function clase() { // añade la clase al atributo
+            $('p').addClass('resaltado');
+        }
+
+    </script>
+</body>
+
+</html>

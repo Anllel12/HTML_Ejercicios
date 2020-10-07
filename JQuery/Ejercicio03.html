@@ -13,6 +13,13 @@
         <input class="inputB" type="button" value="AFTER" onclick="despues()" />
         <input class="inputB" type="button" value="APPEND" onclick="sufijo()" />
         <input class="inputB" type="button" value="PREPEND" onclick="prefijo()" />
+        <input class="inputB" type="button" value="borra todos los <h1>" onclick="borra()" />
+        <input class="inputB" type="button" value="cambiar todos los <h1>" onclick="cambia()" />
+        <input class="inputB" type="button" value="ocultar <h1>" onclick="ocultar()" />
+            <input class="inputB" type="button" value="oculta con otra funcion <h1>" onclick="ocultar2()" />
+        <input class="inputB" type="button" value="mostrar <h1>" onclick="mostrar()" />
+        <input class="inputB" type="button" value="slideUp <h1>" onclick="slideUp()" />
+        <input class="inputB" type="button" value="slideDown <h1>" onclick="slideDown()" />
         <h1 class="text">Esto es la cabecera 1</h1>
         <p class="text">Esto es el parrafo 1</p>
     </div>
@@ -50,6 +57,34 @@
             var par = (`<p>Parrafo nuevo con prepend ${parrafo}</p>`);
             $('h1').prepend(par);
             parrafo++;
+        }
+
+        function borra() {
+            $('h1').remove();
+        }
+
+        function ocultar() {
+            $('h1').hide();
+        }
+
+        function ocultar2() { // si esta escondido lo muestra y viceversa
+            $('h1').toggle();
+        }
+
+        function cambia() {
+            $('h1').text('Tocaste el boton y cambie');
+        }
+
+        function mostrar() {
+            $('h1').show();
+        }       
+
+        function slideUp() {  // Ocultar como una persiana.
+            $('h1').slideUp();
+        }
+
+        function slideDown() {
+            $('h1').slideDown();
         }
     </script>
 </body>
