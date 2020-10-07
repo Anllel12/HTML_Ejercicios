@@ -10,6 +10,11 @@
             background-color: #001aff;
             font-size: 200%;
         }
+
+        .resaltado2 {
+            background-color: #33ff00;
+            font-size: 300%;
+        }
     </style>
 </head>
 
@@ -17,6 +22,7 @@
     <div class="mainbox">
         <input class="inputB" type="button" value="Cambia color" onclick="color()" />
         <input class="inputB" type="button" value="Agrega clase" onclick="clase()" />
+        <input class="inputB" type="button" value="Agrega clase2" onclick="clase2()" />
         <h1 class="text">Esto es la cabecera 1</h1>
         <p class="text">Esto es el parrafo 1</p>
     </div>
@@ -42,6 +48,9 @@
             $('p').addClass('resaltado');
         }
 
+        function clase2() { // elimina la clase al atributo y despues le añade otra
+            $('p').removeClass('resaltado').addClass('resaltado2');
+        }
     </script>
 </body>
 
