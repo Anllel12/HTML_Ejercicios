@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+    <style>
+        .caja{
+            position: absolute;
+            background-color: #fe0;
+            width:  64px;
+            height: 64px;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <input type="button" value="Animacion" onclick="animar()"/>
+    <input type="button" value="derecha" onclick="derecha();"/>
+    <input type="button" value="derecha y abajo" onclick="derechaAbajo();"/>
+    
+    <h1 class="text">Esto es la cabecera 1</h1>
+    <p class="text">Esto es el parrafo 1</p>
+    <div id="bloque" class="caja"></div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <!-- Lo cargo desde el cdn de google >...< -->
+
+    <script>
+        onReady();  // Para que todo termine de generarse la web.
+        function onReady() {
+            $(document).ready();
+        }
+
+        function animar(){
+            $('p').animate({ opacity: 0.25});
+
+        }
+        function derecha(){
+            $('#bloque').animate({'left': '+=50px'}, 'slow')
+        }
+
+        function derechaAbajo(){
+            $('#bloque').animate({'left': '+=50px', 'top': '+=50px'}, 'slow')
+        }
+    </script>
+</body>
+
+</html>
