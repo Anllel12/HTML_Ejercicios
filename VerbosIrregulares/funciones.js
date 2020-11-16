@@ -6,17 +6,76 @@ var marcador = 0;
 function comprueba() {
     if (jugando == 0) {
         jugando = 1;
-        var verboLeido = document.getElementById('caja').value;
+        var verboLeido = $('#caja').val();
         $('#botonresultado').removeClass('btn-danger');
         $('#botonresultado').removeClass('btn-success');
         $('#botonresultado').removeClass('btn-dark');
 
         if (verbos[verboElegido][tiempoAdivinar] == verboLeido) {// Si es correcto el verbo escrito entra aqui
             marcador++;
+            switch (marcador){// lo hago en un switch porque me es más facil resetaer los dados
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4: $("#marcador").append('<i class="fas fa-dice-one"></i>'); break;// añado el dado uno
+                case 5: $("#marcador").html('<i class="fas fa-dice-two"></i>'); break;// elemino el dado uno y pongo el dos
+                case 6:
+                case 7:
+                case 8:
+                case 9: $("#marcador").append('<i class="fas fa-dice-two"></i>'); break;// añado el dado dos
+                case 10: $("#marcador").html('<i class="fas fa-dice-three"></i>'); break;// elemino el dado dos y pongo el tres
+                case 11:
+                case 12:
+                case 13:
+                case 14: $("#marcador").append('<i class="fas fa-dice-three"></i>'); break;//añado el dado tres
+                case 15: $("#marcador").html('<i class="fas fa-dice-four"></i>'); break;// elemino el dado tres y pongo el cuatro
+                case 16:
+                case 17:
+                case 18:
+                case 19: $("#marcador").append('<i class="fas fa-dice-four"></i>'); break;// añado el dado cuatro
+                case 20: $("#marcador").html('<i class="fas fa-dice-five"></i>'); break;// elemino el dado cuatro y pongo el cinco
+                case 21:
+                case 22:
+                case 23:
+                case 24: $("#marcador").append('<i class="fas fa-dice-five"></i>'); break;// añado el dado cinco
+                case 25: $("#marcador").html('<i class="fas fa-dice-six"></i>'); break;// elemino el dado cinco y pongo el seis
+                case 26:
+                case 27:
+                case 28:
+                case 29: $("#marcador").append('<i class="fas fa-dice-six"></i>'); break;// añado el dado seis
+            }
             $('#botonresultado').addClass('btn-success');
             $('#botonresultado').text("CORRECT!");
         } else {
-            marcador--;
+            // marcador--;
+            // if(marcador <= 5){
+            //     marcador = 0;
+            //     $("#marcador").html('<i class="fas fa-dice-one"></i>');// reseteo el dado uno y porgo el marcador a 5 para no tener problemas con el switch
+            // }
+            // if(marcador > 5 && marcador <= 10){
+            //     marcador = 6;
+            //     $("#marcador").html('<i class="fas fa-dice-two"></i>');// reseteo el dado dos
+            // }
+            // if(marcador > 10 && marcador <= 15){
+            //     marcador = 11;
+            //     $("#marcador").html('<i class="fas fa-dice-three"></i>');// reseteo el dado tres
+            // }
+            // if(marcador > 15 && marcador <= 20){
+            //     marcador = 16;
+            //     $("#marcador").html('<i class="fas fa-dice-four"></i>');// reseteo el dado cuatro
+            // }
+            // if(marcador > 20 && marcador <= 25){
+            //     marcador = 21;
+            //     $("#marcador").html('<i class="fas fa-dice-five"></i>');// reseteo el dado cinco
+            // }
+            // if(marcador > 25 && marcador <= 30){
+            //     marcador = 26;
+            //     $("#marcador").html('<i class="fas fa-dice-six"></i>');// reseteo el dado seis
+            // }
+            marcador = 0;// pongo el marcador a cero para no tener problemas con el switch
+            $("#marcador").html('<i class="fas fa-dice-one"></i>');// reseteo el dado a uno
+            $("#boton1").html('<button class="btn btn-block btn-secondary">' + verbos[verboElegido][0] + '</button>');
             $('#botonresultado').addClass('btn-danger');
             $('#botonresultado').text(verbos[verboElegido][tiempoAdivinar]);
         }
@@ -26,7 +85,7 @@ function comprueba() {
         jugando = 0;
         eligeVerbo();
     }
-    $('#marcador').text(marcador);
+    console.log(marcador)
 }
 
 function eligeVerbo() {
@@ -40,19 +99,19 @@ function eligeVerbo() {
     if (tiempoAdivinar == 0) {
         $("#boton1").html('<input id="caja" class= "form-control">');
     } else {
-        $("#boton1").html('<button class="btn btn-block btn-secondary">' + verbos[verboElegido][0] + '</button>');
+        $("#boton1").html('<button class="btn btn-block btn-secondary" disabled>' + verbos[verboElegido][0] + '</button>');
     }
 
     if (tiempoAdivinar == 1) {
         $("#boton2").html('<input id="caja" class= "form-control">');
     } else {
-        $("#boton2").html('<button class="btn btn-block btn-secondary">' + verbos[verboElegido][1] + '</button>');
+        $("#boton2").html('<button class="btn btn-block btn-secondary" disabled>' + verbos[verboElegido][1] + '</button>');
     }
 
     if (tiempoAdivinar == 2) {
         $("#boton3").html('<input id="caja" class= "form-control">');
     } else {
-        $("#boton3").html('<button class="btn btn-block btn-secondary">' + verbos[verboElegido][2] + '</button>');
+        $("#boton3").html('<button class="btn btn-block btn-secondary" disabled>' + verbos[verboElegido][2] + '</button>');
     }
 
 }
