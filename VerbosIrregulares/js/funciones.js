@@ -2,6 +2,7 @@ var tiempoAdivinar = 0;
 var verboElegido = 0;
 var jugando = 0;
 var marcador = 0;
+var nivel = location.hash.substring(1); // recibe el valor a traves de la url
 
 function comprueba() {
     if (jugando == 0) {
@@ -44,35 +45,12 @@ function comprueba() {
                 case 27:
                 case 28:
                 case 29: $("#marcador").append('<i class="fas fa-dice-six"></i>'); break;// añado el dado seis
+                default: $("#marcador").html('<i class="fas fa-star"></i>'); break;
             }
             $('#botonresultado').addClass('btn-success');
             $('#botonresultado').text("CORRECT!");
+            verboElegido++
         } else {
-            // marcador--;
-            // if(marcador <= 5){
-            //     marcador = 0;
-            //     $("#marcador").html('<i class="fas fa-dice-one"></i>');// reseteo el dado uno y porgo el marcador a 5 para no tener problemas con el switch
-            // }
-            // if(marcador > 5 && marcador <= 10){
-            //     marcador = 6;
-            //     $("#marcador").html('<i class="fas fa-dice-two"></i>');// reseteo el dado dos
-            // }
-            // if(marcador > 10 && marcador <= 15){
-            //     marcador = 11;
-            //     $("#marcador").html('<i class="fas fa-dice-three"></i>');// reseteo el dado tres
-            // }
-            // if(marcador > 15 && marcador <= 20){
-            //     marcador = 16;
-            //     $("#marcador").html('<i class="fas fa-dice-four"></i>');// reseteo el dado cuatro
-            // }
-            // if(marcador > 20 && marcador <= 25){
-            //     marcador = 21;
-            //     $("#marcador").html('<i class="fas fa-dice-five"></i>');// reseteo el dado cinco
-            // }
-            // if(marcador > 25 && marcador <= 30){
-            //     marcador = 26;
-            //     $("#marcador").html('<i class="fas fa-dice-six"></i>');// reseteo el dado seis
-            // }
             marcador = 0;// pongo el marcador a cero para no tener problemas con el switch
             $("#marcador").html('<i class="fas fa-dice-one"></i>');// reseteo el dado a uno
             $("#boton1").html('<button class="btn btn-block btn-secondary">' + verbos[verboElegido][0] + '</button>');
@@ -85,11 +63,9 @@ function comprueba() {
         jugando = 0;
         eligeVerbo();
     }
-    console.log(marcador)
 }
 
 function eligeVerbo() {
-    verboElegido = Math.floor(Math.random() * verbos.length);// Coge un verbo aleatorio
     tiempoAdivinar = Math.floor(Math.random() * 3);// Para que salga un tiempo vacio
 
     console.log(verbos[verboElegido][tiempoAdivinar]);// Respuesta
@@ -98,22 +74,30 @@ function eligeVerbo() {
 
     if (tiempoAdivinar == 0) {
         $("#boton1").html('<input id="caja" class= "form-control">');
-    } else {
+    } 
+    else {
         $("#boton1").html('<button class="btn btn-block btn-secondary" disabled>' + verbos[verboElegido][0] + '</button>');
     }
 
     if (tiempoAdivinar == 1) {
         $("#boton2").html('<input id="caja" class= "form-control">');
-    } else {
+    } 
+    else {
         $("#boton2").html('<button class="btn btn-block btn-secondary" disabled>' + verbos[verboElegido][1] + '</button>');
     }
 
     if (tiempoAdivinar == 2) {
         $("#boton3").html('<input id="caja" class= "form-control">');
-    } else {
+    } 
+    else {
         $("#boton3").html('<button class="btn btn-block btn-secondary" disabled>' + verbos[verboElegido][2] + '</button>');
     }
 
+    if (verboElegido > nivel-1) {
+        location.href = "niveles.html"
+    }
 }
+
+
 
 eligeVerbo();
