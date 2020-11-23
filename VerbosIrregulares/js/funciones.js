@@ -2,7 +2,7 @@ var tiempoAdivinar = 0;
 var verboElegido = Cookies.get('verboElegido');
 var jugando = 0;
 var marcador = Cookies.get('marcador');
-var nivel = Cookies.get('niveles'); // recibe el valor a traves de la url
+var nivel = Cookies.get('niveles'); // recibe el valor a traves de la cookie
 
 function comprueba() {
     if (jugando == 0) {
@@ -12,7 +12,7 @@ function comprueba() {
         $('#botonresultado').removeClass('btn-success');
         $('#botonresultado').removeClass('btn-dark');
 
-        if (verbos[verboElegido][tiempoAdivinar] == verboLeido) {// Si es correcto el verbo escrito entra aqui
+        if (verbos[verboElegido][tiempoAdivinar] == verboLeido || verbos[verboElegido][tiempoAdivinar].split("/")[0] == verboLeido || verbos[verboElegido][tiempoAdivinar].split("/")[1] == verboLeido) {// Si es correcto el verbo escrito entra aqui
             marcador++;
             switch (marcador){// lo hago en un switch porque me es más facil resetaer los dados
                 case 0:
@@ -50,14 +50,15 @@ function comprueba() {
             $('#botonresultado').addClass('btn-success');
             $('#botonresultado').text("CORRECT!");
             verboElegido++
-            Cookies.set('marcador', marcador)
-            Cookies.set('verboElegido', verboElegido)
+            Cookies.set('marcador', marcador)// crea y actualiza la cookie
+            Cookies.set('verboElegido', verboElegido)// crea y actualiza la cookie
         } else {
             marcador = 0;// pongo el marcador a cero para no tener problemas con el switch
             $("#marcador").html('<i class="fas fa-dice-one"></i>');// reseteo el dado a uno
             $("#boton1").html('<button class="btn btn-block btn-secondary">' + verbos[verboElegido][0] + '</button>');
             $('#botonresultado').addClass('btn-danger');
             $('#botonresultado').text(verbos[verboElegido][tiempoAdivinar]);
+            Cookies.set('marcador', marcador)// crea y actualiza la cookie
         }
     } else {
         $('#botonresultado').addClass('btn-dark');
@@ -68,11 +69,11 @@ function comprueba() {
 }
 
 function eligeVerbo() {
-    tiempoAdivinar = Math.floor(Math.random() * 3);// Para que salga un tiempo vacio
+    tiempoAdivinar = Math.floor(Math.random() * 3);// para que salga un tiempo vacio
 
-    console.log(verbos[verboElegido][tiempoAdivinar]);// Respuesta
+    console.log(verbos[verboElegido][tiempoAdivinar]);// respuesta
 
-    $("#castellano").html(verbos[verboElegido][3]);// En español
+    $("#castellano").html(verbos[verboElegido][3]);// en español
 
     if (tiempoAdivinar == 0) {
         $("#boton1").html('<input id="caja" class= "form-control">');
@@ -95,7 +96,7 @@ function eligeVerbo() {
         $("#boton3").html('<button class="btn btn-block btn-secondary" disabled>' + verbos[verboElegido][2] + '</button>');
     }
 
-    if (verboElegido > nivel-1) {
+    if (verboElegido > nivel-1) {// reseteo las cookies y las variable para que simule que esta empezando de nuevo
         location.href = "niveles.html"
 
         marcador = 0;

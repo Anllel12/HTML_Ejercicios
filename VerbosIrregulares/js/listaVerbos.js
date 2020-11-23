@@ -1,6 +1,7 @@
 var verbos = [
 ["arise","arose","arisen","surgir"],
 ["awake","awoke","awoken","despertar(se)"],
+["be","was/were","been","ser/estar"],
 ["bear","bore","borne","soportar"],
 ["beat","beat","beaten","golpear"],
 ["become","became","become","convertirse en"],
@@ -65,7 +66,7 @@ var verbos = [
 ["lead","led","led","llevar"],
 ["lean","leant","leant","apoyarse"],
 ["leap","leapt","leapt","brincar"],
-["learn","learnt","learnt","aprender"],
+["learn","learnt/learned","learnt/learned","aprender"],
 ["leave","left","left","dejar"],
 ["lend","lent","lent","prestar"],
 ["let","let","let","permitir"],
