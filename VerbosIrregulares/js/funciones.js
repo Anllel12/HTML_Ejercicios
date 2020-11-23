@@ -1,8 +1,8 @@
 var tiempoAdivinar = 0;
-var verboElegido = 0;
+var verboElegido = Cookies.get('verboElegido');
 var jugando = 0;
-var marcador = 0;
-var nivel = location.hash.substring(1); // recibe el valor a traves de la url
+var marcador = Cookies.get('marcador');
+var nivel = Cookies.get('niveles'); // recibe el valor a traves de la url
 
 function comprueba() {
     if (jugando == 0) {
@@ -50,6 +50,8 @@ function comprueba() {
             $('#botonresultado').addClass('btn-success');
             $('#botonresultado').text("CORRECT!");
             verboElegido++
+            Cookies.set('marcador', marcador)
+            Cookies.set('verboElegido', verboElegido)
         } else {
             marcador = 0;// pongo el marcador a cero para no tener problemas con el switch
             $("#marcador").html('<i class="fas fa-dice-one"></i>');// reseteo el dado a uno
@@ -95,9 +97,12 @@ function eligeVerbo() {
 
     if (verboElegido > nivel-1) {
         location.href = "niveles.html"
+
+        marcador = 0;
+        Cookies.set('marcador', 0)
+        verboElegido = 0;
+        Cookies.set('verboElegido', 0)
     }
 }
-
-
 
 eligeVerbo();

@@ -78,7 +78,7 @@
     <script src="js/listaVerbos.js"> </script> <!-- Link de los verbos -->
     <script>
         function niveles(number) {
-            location.href = 'index.html' + '#' + number; //le paso el valor obtenido por la url
+            Cookies.set('niveles', number)
         }
     </script>
 </body>
